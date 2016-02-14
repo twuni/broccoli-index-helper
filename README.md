@@ -48,6 +48,29 @@ With **broccoli-index-helper**, this logic can be written as follows:
 >
 > ```
 >     const index = require('broccoli-index-helper');
->     module.exports = index(__filename, ['dependencies', 'modules', 'main']);
+>     module.exports = index({
+>       fileName: __filename,
+>       moduleNames: ['dependencies', 'modules', 'main']
+>     });
 > ```
 >
+
+## Usage
+
+### `function(options = {})`
+
+ * `options`: Required. Should be an `object` with some of the following attributes defined:
+
+   * `fileName`: Optional. Should be a `string`. If given, this is assumed to be the `__filename` variable of the calling file and will be used to derive an `indexName` from the last path component, excluding the file extension. Supercedes `indexName`, if given.
+
+   * `indexName`: Optional. Should be a `string`. If given, this will be the base of the relative path used for importing the named modules via `require`.
+
+   * `pathFunction`: Optional. Should be a `function`. If given, this function will be used to compute the base path for importing named modules via `require`. This function should accept a single `string` argument for the module name, and should return a `string` that can be provided directly to `require` for importing the named module. Supercedes `fileName` and `indexName`, if given.
+
+   * `moduleNames`: Optional. Should be an `array` of `string` values corresponding to the module names to be merged. The modules will be merged in the given order. If `moduleNames` is provided, no other options are required.
+
+   * `modulePaths`: Optional. Should be an `array` of `string` values corresponding to the paths of the modules to be merged, in the given order. If `modulePaths` is provided, no other options are required. Supercedes `moduleNames` and `indexName`, if given.
+
+   * `modules`: Optional. Should be an `array` of Broccoli trees to be merged. Supercedes `modulePaths`, if given.
+
+ * The output of this function will be a Broccoli tree resulting from merging the given modules.
