@@ -1,0 +1,21 @@
+{
+  "name": "broccoli-index-helper",
+  "version": "1.0.0",
+  "description": "broccoli-index-helper helps you build modular Broccoli configurations.",
+  "author": "Devin Canterberry <devin@twuni.org>",
+  "license": "MIT",
+  "main": "lib/broccoli-index-helper.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twuni/broccoli-index-helper"
+  },
+  "keywords": [
+    "broccoli-helper",
+    "broccoli",
+    "helper",
+    "index"
+  ],
+  "dependencies": {
+    "broccoli-merge-trees": "1.1.1"
+  }
+}
